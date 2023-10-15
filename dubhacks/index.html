@@ -5,11 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website Title</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Welcome to Our Website</h1>
         <p>A place where we can find peace and joy in life.</p>
+        <div class="row">
+            <div class="col-md-2">
+                <label>Enter Zip Code</label>
+                <input type="text" id="zipcode" class="input-small">
+                <span class="label label-error margin-t-10"></span>
+            </div>
+    
+            <div class="col-md-4">
+                <label>City</label>
+                <input type="text" id="city">
+            </div>
+    
+            <div class="col-md-2">
+                <label>State</label>
+                <input type="text" id="state" class="input-mini">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="search">
+                <button><img src="images/search.png"></button>
+            </div>
+        </div>
     </header>
 
     <div class="container">
