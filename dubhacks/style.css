@@ -2,26 +2,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #caecc1; 
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    color: #000000;
     text-align: center;
-    padding: 20px;
-}
-
-nav {
-    background-color: #444;
-    text-align: center;
-    padding: 10px;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
+    padding: 150px; 
+    background-image: url("images/forest_image00.jpeg");
 }
 
 .container {
