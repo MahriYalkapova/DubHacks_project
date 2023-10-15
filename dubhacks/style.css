@@ -9,8 +9,66 @@ header {
     color: #000000;
     text-align: center;
     padding: 150px; 
-    background-image: url("images/forest_image00.jpeg");
+    background-image: url("Screen\ Shot\ 2023-10-14\ at\ 11.56.40\ PM.png");
+    background-color: rgba(255, 255, 255, 0.3);
+    background-blend-mode: overlay;
+    
 }
+
+/* Apply basic styling */
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-md-2,
+.col-md-4,
+.col-md-2 {
+    margin-right: 1px;
+    margin-left: 1px;
+    padding: 50px;
+    text-align: center;
+    color: rgb(7, 62, 37);
+    font-size: large;
+    font-family: 'Monaco', monospace;
+    font-weight: bold;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style the error label */
+.label-error {
+    color: red;
+    font-weight: normal;
+}
+
+/* Style input fields */
+input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search button{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+
+}
+
+.search button img{
+    width: 16px;
+}
+
 
 .container {
     max-width: 800px;
