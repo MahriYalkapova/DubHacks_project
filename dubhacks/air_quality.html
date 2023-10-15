@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality</title>
+</head>
+<body>
+    <h1>Air Quality Information</h1>
+    
+    <div>
+        <label for="city">Pollution level: </label>
+        <input type="text" id="city" readonly>
+    </div>
+    
+    <div>
+        <label for="state">Polluion level: </label>
+        <input type="text" id="state" readonly>
+    </div>
+    
+    <script>
+        // JavaScript code to display air quality information goes here
+        // Fetch and display air quality data on this page
+        async function displayAirQuality() {
+            const apiURL = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=52.52&longitude=13.41&hourly=pm10,pm2_5";
+            const response = await fetch(apiURL);
+            var data = await response.json();
+            console.log(data);
+    
+            const cityInput = document.getElementById("city");
+            const stateInput = document.getElementById("state");
+    
+            if (data.hourly && data.hourly.pm10.length > 0 && data.hourly.pm2_5.length > 0) {
+                const latestPM10 = data.hourly.pm10[data.hourly.pm10.length - 1];
+                const latestPM2_5 = data.hourly.pm2_5[data.hourly.pm2_5.length - 1];
+                cityInput.value = `PM10: ${latestPM10} μg/m³`;
+                stateInput.value = `PM2.5: ${latestPM2_5} μg/m³`;
+            } else {
+                cityInput.value = "N/A";
+                stateInput.value = "N/A";
+            }
+        }
+    
+        // Call the function to display air quality information
+        displayAirQuality();
+    </script>
+</body>
+</html>
