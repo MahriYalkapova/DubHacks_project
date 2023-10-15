@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website Title</title>
+    <title>Polli Everywhr</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- Include jQuery library -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Welcome to Our Website</h1>
-        <p>A place where we can find peace and joy in life.</p>
+        <h1>Polli Everywhr</h1>
         <div class="row">
             <div class="col-md-2">
                 <label>Enter Zip Code</label>
                 <input type="text" id="zipcode" class="input-small">
                 <span class="label label-error margin-t-10"></span>
             </div>
-    
+
             <div class="col-md-4">
                 <label>City</label>
                 <input type="text" id="city">
             </div>
-    
-            <div class="col-md-2">
+
+            <div class "col-md-2">
                 <label>State</label>
                 <input type="text" id="state" class="input-mini">
             </div>
@@ -32,17 +29,23 @@
 
         <div class="card">
             <div class="search">
-                <button><img src="images/search.png"></button>
+                <button><img src="images/search.png" onclick="openAirQualityPage()"></button>
             </div>
         </div>
     </header>
+
+    <script>
+        function openAirQualityPage() {
+            window.location.href = "air_quality.html"; // Redirect to the air quality page
+        }
+    </script>
 
     <div class="container">
         <h2>About Us</h2>
         <p>At PolliEverywhere, we are committed to providing you with real-time, accurate,
           and personalized information about the pollution levels in your city.
           Our mission is to empower you with the knowledge to make informed decisions about
-          your outdoor activities and ensure your well-being, especially if you have health 
+          your outdoor activities and ensure your well-being, especially if you have health
           conditions that are affected by air quality.</p>
 
         <h2>Services</h2>
