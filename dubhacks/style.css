@@ -6,13 +6,27 @@ body {
 }
 
 header {
-    color: #000000;
     text-align: center;
-    padding: 150px; 
-    background-image: url("Screen\ Shot\ 2023-10-14\ at\ 11.56.40\ PM.png");
-    background-color: rgba(255, 255, 255, 0.3);
-    background-blend-mode: overlay;
+    padding: 100px;
+    background-image: url("polli_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 80px;
+    font-family: Impact, fantasy;
+    font-style: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 
+        -1px -1px 0 #000000,  
+         1px -1px 0 #000000,
+        -1px  1px 0 #000000,
+         1px  1px 0 #000000;
 }
 
 /* Apply basic styling */
