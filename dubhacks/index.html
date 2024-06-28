@@ -9,18 +9,9 @@
 <body>
     <header>
         <h1>Polli Everywhr</h1>
-        <div class="row">
-            <div class="col-md-2">
-                <label>Enter Location</label>
-                <input type="text" id="zipcode" class="input-small">
-                <span class="label label-error margin-t-10"></span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="search">
-                <button><img src="images/search.png" onclick="openAirQualityPage()"></button>
-            </div>
+        <div class="search-container">
+            <input type="text" id="zipcode" class="input-small" placeholder="Enter location...">
+            <button class="search-button"><img src="search.png" class="search-icon" onclick="openAirQualityPage()"></button>
         </div>
     </header>
 
@@ -45,7 +36,7 @@
     </div>
 
     <footer>
-        &copy; 2023 PolliEverywhr,Inc. All rights reserved.
+        
     </footer>
 </body>
 </html>

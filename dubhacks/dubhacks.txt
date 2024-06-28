@@ -1,4 +1,0 @@
-name: 
-
-functions: see pollution level when we're travelling
-

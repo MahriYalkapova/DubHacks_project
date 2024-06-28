@@ -7,7 +7,7 @@ body {
 
 header {
     text-align: center;
-    padding: 100px;
+    padding: 150px;
     background-image: url("polli_background.jpg");
     background-size: cover;
     background-position: center;
@@ -29,60 +29,35 @@ h1 {
          1px  1px 0 #000000;
 }
 
-/* Apply basic styling */
-.row {
+.input-small {
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Rounded corners for the left side */
+    outline: none;
+    flex-grow: 1;
+}
+
+.search-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin: 20px auto; /* Center the container */
+    width: 300px; /* Adjust width as necessary */
 }
 
-.col-md-2,
-.col-md-4,
-.col-md-2 {
-    margin-right: 1px;
-    margin-left: 1px;
-    padding: 50px;
-    text-align: center;
-    color: rgb(7, 62, 37);
-    font-size: large;
-    font-family: 'Monaco', monospace;
-    font-weight: bold;
-}
-
-.label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-/* Style the error label */
-.label-error {
-    color: red;
-    font-weight: normal;
-}
-
-/* Style input fields */
-input {
-    width: 100%;
-    padding: 5px;
+.search-button {
+    background: none;
     border: none;
-    border-radius: 5px;
-}
-
-.search button{
-    border: 0;
-    outline: 0;
-    background: #ebfffc;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    padding: 0;
+    margin-left: 10px;
     cursor: pointer;
-
 }
 
-.search button img{
-    width: 16px;
+.search-icon {
+    width: 24px;
+    height: 24px;
 }
-
 
 .container {
     max-width: 800px;
