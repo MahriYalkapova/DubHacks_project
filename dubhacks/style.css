@@ -59,16 +59,47 @@ h1 {
     height: 24px;
 }
 
+/* Style input fields */
+input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
 .container {
-    max-width: 800px;
-    margin: 20px auto;
+    display: flex;
+    align-items: center;
     padding: 20px;
-    background-color: #fff;
+}
+
+.logo {
+    margin-right: 70px; /* Space between the logo and the text */
+    margin-left: 100px;
+}
+
+.logo img {
+    max-width: 200px; /* Adjust size as needed */
+    height: auto;
+}
+
+.text-content {
+    max-width: 600px; /* Adjust size as needed */
+    align-items: right;
+}
+
+h2 {
+    margin-top: 0;
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
+    background-color: #533c2a;
     padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
 }
