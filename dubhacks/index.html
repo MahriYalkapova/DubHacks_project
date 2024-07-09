@@ -10,14 +10,62 @@
     <header>
         <h1>Polli Everywhr</h1>
         <div class="search-container">
-            <input type="text" id="zipcode" class="input-small" placeholder="Enter location...">
+            <input type="text" id="location" class="input-small" placeholder="Enter location...">
+            <div id="suggestions" class="suggestions"></div>
             <button class="search-button"><img src="search.png" class="search-icon" onclick="openAirQualityPage()"></button>
         </div>
     </header>
 
     <script>
-        function openAirQualityPage() {
-            window.location.href = "air_quality.html"; // Redirect to the air quality page
+       const apiKey = "ff02976d70aad5c50c0f906c45bef0c8";
+        const geoCodingAPI = "http://api.openweathermap.org/geo/1.0/direct";
+        const pollutionAPI = "http://api.openweathermap.org/data/2.5/air_pollution";
+
+        async function openAirQualityPage() {
+            const location = document.getElementById('location').value;
+            if (!location) {
+                alert("Please enter a location");
+                return;
+            }
+
+            try {
+                const geoResponse = await fetch(`${geoCodingAPI}?q=${location}&appid=${apiKey}`);
+                const geoData = await geoResponse.json();
+                if (geoData.length === 0) {
+                    alert("Location not found");
+                    return;
+                }
+
+                const { lat, lon } = geoData[0];
+                const pollutionResponse = await fetch(`${pollutionAPI}?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+                const pollutionData = await pollutionResponse.json();
+                
+                console.log(pollutionData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                alert("Failed to fetch pollution data");
+            }
+        }
+
+        async function showSuggestions(query) {
+            if (query.length < 2) {
+                document.getElementById('suggestions').innerHTML = "";
+                return;
+            }
+
+            try {
+                const geoResponse = await fetch(`${geoCodingAPI}?q=${query}&limit=5&appid=${apiKey}`);
+                const geoData = await geoResponse.json();
+                const suggestions = geoData.map(location => `<div class="suggestion-item" onclick="selectSuggestion('${location.name}, ${location.state}, ${location.country}')">${location.name}, ${location.state}, ${location.country}</div>`).join('');
+                document.getElementById('suggestions').innerHTML = suggestions;
+            } catch (error) {
+                console.error("Error fetching suggestions:", error);
+            }
+        }
+
+        function selectSuggestion(location) {
+            document.getElementById('location').value = location;
+            document.getElementById('suggestions').innerHTML = "";
         }
     </script>
 

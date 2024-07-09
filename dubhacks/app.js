@@ -1,20 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // IMPORTANT: Fill in your client key
-    var clientKey = "js-JZ4jYushsuF51voweatEVpggiCi4Lpk6N8tHSWdidVJf7vgosXDR5xOb1cCrLIQr";
-    var cache = {};
-
-    function handleResp(data) {
-        var errorElem = document.querySelector(".label-error");
-        var cityInput = document.getElementById("city");
-        var stateInput = document.getElementById("state");
-
-        if (data.error_msg) {
-            errorElem.textContent = data.error_msg;
-        } else if ("city" in data) {
-            // Set city and state
-            cityInput.value = data.city;
-            stateInput.value = data.state;
-        }
+    const location = document.getElementById('location').value;
+    if (location) {
+        getCoordinates(location)
+            .then(coords => getPollutionData(coords.lat, coords.lng))
+            .then(data => displayPollutionData(data))
+            .catch(error => console.error('Error:', error));
     }
 
     document.getElementById("zipcode").addEventListener("keyup", function() {
