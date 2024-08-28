@@ -1,90 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polli Everywhr</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8"> <!-- Defines the character encoding for the HTML document as UTF-8. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the webpage is responsive by setting the viewport width to match the device's width. -->
+    <title>Polli Everywhr</title> <!-- Sets the title of the webpage to "Polli Everywhr". -->
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Links to an external CSS file named style.css for styling the webpage. -->
 </head>
 <body>
     <header>
-        <h1>Polli Everywhr</h1>
+        <h1>Polli Everywhr</h1> <!-- Displays the main heading of the webpage. -->
         <div class="search-container">
-            <input type="text" id="location" class="input-small" placeholder="Enter location...">
-            <div id="suggestions" class="suggestions"></div>
+            <input type="text" id="location" class="input-small" placeholder="Enter location..." oninput="showSuggestions(this.value)">
+            <!-- An input field for entering the location. Calls the showSuggestions() function whenever the input value changes. -->
+            <div id="suggestions" class="suggestions"></div> <!-- A container for displaying location suggestions. -->
             <button class="search-button"><img src="search.png" class="search-icon" onclick="openAirQualityPage()"></button>
+            <!-- A search button that triggers the openAirQualityPage() function when clicked. Contains an image with class "search-icon". -->
         </div>
     </header>
 
     <script>
-       const apiKey = "ff02976d70aad5c50c0f906c45bef0c8";
-        const geoCodingAPI = "http://api.openweathermap.org/geo/1.0/direct";
-        const pollutionAPI = "http://api.openweathermap.org/data/2.5/air_pollution";
+        // Define API keys and URLs for Google Places, Geocoding, and Air Quality APIs.
+        const googleApiKey = "AIzaSyDeSFPRdveLKclLmu6UD7sswtRfM76R6TA"; // Placeholder for the Google API key.
+        const placesAPI = "https://places.googleapis.com/v1/places:autocomplete"; // URL for Google Places Autocomplete API.
+        const geocodeAPI = "https://maps.googleapis.com/maps/api/geocode/json"; // URL for Google Geocoding API.
+        const airQualityAPI = "https://airquality.googleapis.com/v1/currentConditions:lookup"; // URL for Air Quality API.
 
+        // Function to fetch and display location suggestions based on the input query.
+        async function showSuggestions(query) {
+            if (query.length < 2) { // Checks if the query length is less than 2 characters.
+                document.getElementById('suggestions').innerHTML = ""; // Clears suggestions if the query is too short.
+                return; // Exits the function if the query is too short.
+            }
+
+            const body = JSON.stringify({ // Creates the request body for the Places API.
+                input: query, // Includes the input query.
+                locationBias: { // Adds a location bias to the request.
+                    circle: {
+                        center: {
+                            latitude: 37.7749, // Center latitude for the location bias.
+                            longitude: -122.4194 // Center longitude for the location bias.
+                        },
+                        radius: 5000.0 // Radius for the location bias in meters.
+                    }
+                }
+            });
+
+            try {
+                // Fetches location suggestions from the Places API.
+                const response = await fetch(placesAPI, {
+                    method: 'POST', // Specifies the request method as POST.
+                    headers: {
+                        'Content-Type': 'application/json', // Sets the request content type to JSON.
+                        'X-Goog-Api-Key': googleApiKey // Adds the Google API key to the request headers.
+                    },
+                    body: body // Sends the request body.
+                });
+
+                const data = await response.json(); // Parses the response as JSON.
+                const suggestions = data.suggestions.map(suggestion => { // Maps over the suggestions array.
+                    const text = suggestion.placePrediction ? suggestion.placePrediction.text.text : suggestion.queryPrediction.text.text;
+                    // Gets the suggestion text based on the prediction type.
+                    return `<div class="suggestion-item" onclick="selectSuggestion('${text}')">${text}</div>`; // Creates a div for each suggestion with an onclick event to select the suggestion.
+                }).join(''); // Joins the suggestion divs into a single string.
+
+                document.getElementById('suggestions').innerHTML = suggestions; // Displays the suggestions.
+            } catch (error) { // Catches any errors during the fetch request.
+                console.error("Error fetching suggestions:", error); // Logs the error to the console.
+            }
+        }
+
+        // Function to select a suggestion and fill the input field with the selected location.
+        function selectSuggestion(location) {
+            document.getElementById('location').value = location; // Sets the input field value to the selected location.
+            document.getElementById('suggestions').innerHTML = ""; // Clears the suggestions.
+        }
+
+        // Function to fetch and display air quality data based on the input location.
         async function openAirQualityPage() {
-            const location = document.getElementById('location').value;
-            if (!location) {
-                alert("Please enter a location");
-                return;
+            const temp = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=${googleApiKey}`);
+            console.log(temp.json());
+            const location = document.getElementById('location').value; // Retrieves the value from the location input field.
+            console.log(location);
+            if (!location) { // Checks if the location input is empty.
+                alert("Please enter a location"); // Alerts the user to enter a location if the input is empty.
+                return; // Exits the function if the input is empty.
             }
 
             try {
-                const geoResponse = await fetch(`${geoCodingAPI}?q=${location}&appid=${apiKey}`);
-                const geoData = await geoResponse.json();
-                if (geoData.length === 0) {
-                    alert("Location not found");
-                    return;
+                // Fetches geocoding data to get latitude and longitude for the input location.
+                const geoResponse = await fetch(`${geocodeAPI}?address=${location}&key=${googleApiKey}`);
+                const geoData = await geoResponse.json(); // Parses the response as JSON.
+                console.log(geoData);
+                if (geoData.status !== "OK") { // Checks if the geocoding API response status is not OK.
+                    alert("Location not found"); // Alerts the user that the location was not found.
+                    return; // Exits the function if the location was not found.
                 }
 
-                const { lat, lon } = geoData[0];
-                const pollutionResponse = await fetch(`${pollutionAPI}?lat=${lat}&lon=${lon}&appid=${apiKey}`);
-                const pollutionData = await pollutionResponse.json();
+                const { lat, lng } = geoData.results[0].geometry.location; // Extracts latitude and longitude from the geocoding response.
+                console.log(geoData.results[0].geometry.location);
                 
-                console.log(pollutionData);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                alert("Failed to fetch pollution data");
+                // Fetches air quality data using the obtained latitude and longitude.
+                const airQualityResponse = await fetch(`${airQualityAPI}?key=${googleApiKey}`, {
+                    method: 'POST', // Specifies the request method as POST.
+                    headers: {
+                        'Content-Type': 'application/json' // Sets the request content type to JSON.
+                    },
+                    body: JSON.stringify({ // Sends the latitude and longitude in the request body.
+                        location: {
+                            latitude: lat,
+                            longitude: lng
+                        }
+                    })
+                });
+
+                const airQualityData = await airQualityResponse.json(); // Parses the air quality response as JSON.
+                console.log(airQualityData); // Logs the air quality data to the console.
+                // The air quality data can now be displayed to the user.
+            } catch (error) { // Catches any errors during the fetch requests.
+                console.error("Error fetching data:", error); // Logs the error to the console.
+                alert("Failed to fetch air quality data"); // Alerts the user that fetching air quality data failed.
             }
         }
 
-        async function showSuggestions(query) {
-            if (query.length < 2) {
-                document.getElementById('suggestions').innerHTML = "";
-                return;
-            }
-
-            try {
-                const geoResponse = await fetch(`${geoCodingAPI}?q=${query}&limit=5&appid=${apiKey}`);
-                const geoData = await geoResponse.json();
-                const suggestions = geoData.map(location => `<div class="suggestion-item" onclick="selectSuggestion('${location.name}, ${location.state}, ${location.country}')">${location.name}, ${location.state}, ${location.country}</div>`).join('');
-                document.getElementById('suggestions').innerHTML = suggestions;
-            } catch (error) {
-                console.error("Error fetching suggestions:", error);
-            }
-        }
-
-        function selectSuggestion(location) {
-            document.getElementById('location').value = location;
-            document.getElementById('suggestions').innerHTML = "";
-        }
+        
     </script>
 
     <div class="container">
         <div class="logo">
-            <img src="logo.png" alt="Polli Everywhr Logo"> 
+            <img src="logo.png" alt="Polli Everywhr Logo"> <!-- Displays the logo image with alt text "Polli Everywhr Logo". -->
         </div>
         <div class="text-content">
-            <h2>About Us</h2>
+            <h2>About Us</h2> <!-- Displays the subheading "About Us". -->
             <p>At PolliEverywhr, we are committed to providing you with real-time, accurate,
                 and personalized information about the pollution levels in your city.
                 Our mission is to empower you with the knowledge to make informed decisions about
                 your outdoor activities and ensure your well-being, especially if you have health
-                conditions that are affected by air quality.</p>
+                conditions that are affected by air quality.</p> <!-- Displays a paragraph about the company. -->
         </div>
     </div>
 
     <footer>
-        Developed by Mahri Yalkapova, Aurie Hyunh and Rukia Adan
+        Developed by Mahri Yalkapova, Aurie Hyunh and Rukia Adan <!-- Displays the footer with developer names. -->
     </footer>
 </body>
 </html>

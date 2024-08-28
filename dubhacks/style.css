@@ -12,7 +12,6 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
 }
 
 h1 {
@@ -35,6 +34,7 @@ h1 {
     border-radius: 20px; /* Rounded corners for the left side */
     outline: none;
     flex-grow: 1;
+    padding: 10px; /* Added padding for better look */
 }
 
 .search-container {
@@ -44,6 +44,7 @@ h1 {
     margin-top: 20px;
     margin: 20px auto; /* Center the container */
     width: 300px; /* Adjust width as necessary */
+    position: relative; /* For positioning the suggestion box */
 }
 
 .search-button {
@@ -59,12 +60,34 @@ h1 {
     height: 24px;
 }
 
-/* Style input fields */
 input {
     width: 100%;
     padding: 5px;
     border: none;
     border-radius: 5px;
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for better look */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
 }
 
 .container {
