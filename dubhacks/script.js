@@ -96,7 +96,14 @@ async function openAirQualityPage() {
         });
 
         const airQualityData = await airQualityResponse.json(); // Parses the air quality response as JSON.
-        localStorage.setItem('airQualityData', JSON.stringify(airQualityData)); // Store the air quality data in localStorage
+        console.log(location); 
+        // Save the location and air quality data in localStorage
+         const dataToStore = {
+            location: location, // Store the location name
+            airQualityData: airQualityData // Store the air quality data
+        };
+
+        localStorage.setItem('airQualityData', JSON.stringify(dataToStore)); // Store the combined data in localStorage
         window.location.href = 'airQuality.html'; // Redirect to the new page to display the data
     } catch (error) { // Catches any errors during the fetch requests.
         console.error("Error fetching data:", error); // Logs the error to the console.

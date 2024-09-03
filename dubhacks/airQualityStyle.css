@@ -1,0 +1,155 @@
+/* General page styling */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #caecc1; 
+}
+
+h1 {
+    color: #69A88E;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    text-shadow: 
+        -1px -1px 0 #ffffff,  
+         1px -1px 0 #ffffff,
+        -1px  1px 0 #ffffff,
+         1px  1px 0 #ffffff;
+}
+
+#locationName {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px; /* Add some padding inside the box */
+    background-color: white; /* White background for the box */
+    color: #69A88E; /* White font color */
+    border-radius: 15px; /* Rounded corners */
+    display: inline-block; /* Ensures the box fits around the content */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+    margin-left: 40px;
+}
+
+#currentDate {
+    font-size: 20px;
+    color: #69A88E;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+#airQualityContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pollution-level {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pollution-level span {
+    margin-left: 10px;
+}
+
+footer {
+    background-color: #533c2a;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Styling for the return button */
+#returnButton {
+    position: absolute;
+    top: 20px; /* Adjust this value to change the distance from the top */
+    left: 20px; /* Adjust this value to change the distance from the left */
+    padding: 10px 20px;
+    background-color: #69A88E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#returnButton:hover {
+    background-color: #466d5d;
+}
+
+/* New Styles for Tree and AQI Category */
+.tree-container {
+    display: flex;
+    justify-content: left;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+.tree {
+    position: relative;
+    width: 120px;
+    height: 300px;
+    /* Remove fixed left positioning to allow flexible placement */
+}
+
+.trunk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 40px;
+    height: 150px;
+    background-color: #8B4513; /* Brown trunk color */
+    border-radius: 10px;
+    transform: translateX(-50%);
+}
+
+.leaves {
+    position: absolute;
+    background-color: #228B22; /* Default green leaves color */
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.leaves1 {
+    width: 150px;
+    height: 150px;
+    bottom: 130px;
+}
+
+.leaves2 {
+    width: 120px;
+    height: 120px;
+    bottom: 180px;
+}
+
+.leaves3 {
+    width: 90px;
+    height: 90px;
+    bottom: 220px;
+}
+
+#aqiCategory {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #228B22; /* Default green, will be updated dynamically */
+}

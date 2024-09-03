@@ -4,7 +4,7 @@
     <meta charset="UTF-8"> <!-- Defines the character encoding for the HTML document as UTF-8. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the webpage is responsive by setting the viewport width to match the device's width. -->
     <title>Air Quality Information</title> <!-- Sets the title of the webpage. -->
-    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Links to an external CSS file named style.css for styling the webpage. -->
+    <link rel="stylesheet" type="text/css" href="airQualityStyle.css"> <!-- Links to the new CSS file named airQualityStyle.css for styling the webpage. -->
     <script src="airQualityScript.js" defer></script> <!-- Links to the external JavaScript file. -->
 </head>
 <body>
@@ -12,7 +12,25 @@
         <h1>Air Quality Information</h1> <!-- Displays the main heading of the webpage. -->
     </header>
 
+    <div id="currentDate"></div> <!-- Container for the current date. -->
+    <div id="locationName"></div> <!-- Container for the location name. -->
+
     <div id="airQualityContainer"></div> <!-- A container for displaying the air quality information. -->
+
+    <!-- New Container for Tree and AQI Category -->
+    <div class="tree-container">
+        <div class="tree">
+            <div class="trunk"></div>
+            <div class="leaves leaves1"></div>
+            <div class="leaves leaves2"></div>
+            <div class="leaves leaves3"></div>
+            <div class="leaves leaves4"></div>
+            <div class="leaves leaves5"></div>
+        </div>
+        <div id="aqiCategory"></div> <!-- Container for AQI Category Text -->
+    </div>
+
+    <button id="returnButton" onclick="goBack()">Return</button> <!-- Return button to navigate back to the previous page -->
 
     <footer>
         Developed by Mahri Yalkapova, Aurie Hyunh and Rukia Adan <!-- Displays the footer with developer names. -->
