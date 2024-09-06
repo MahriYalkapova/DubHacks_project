@@ -8,53 +8,58 @@
     <script src="airQualityScript.js" defer></script> <!-- Links to the external JavaScript file. -->
 </head>
 <body>
-    <header>
-        <h1>Air Quality Information</h1>
-    </header>
+    <div class="container">
+        <header>
+            <button id="returnButton" onclick="goBack()">Return</button> <!-- Return button -->
+            <h1>Air Quality Information</h1>
+        </header>
 
-    <div id="infoContainer">
-        <div id="currentDate"></div> <!-- Container for the current date. -->
-        <div id="locationName"></div> <!-- Container for the location name. -->
+        <!-- Horizontal flexbox container with 3 sections -->
+        <div id="infoContainer">
+            <!-- First Section: Location, Date, and Tree -->
+            <div class="info-section">
+                <div id="currentDate"></div> <!-- Container for the current date -->
+                <div id="locationName"></div> <!-- Container for the location name -->
 
-        <div id="airQualityContainer"></div> <!-- A container for displaying the air quality information. -->
-
-        <!-- Tree and AQI Category Container -->
-        <div class="tree-container">
-            <div class="tree">
-                <div class="trunk"></div>
-                <div class="leaves leaves1"></div>
-                <div class="leaves leaves2"></div>
-                <div class="leaves leaves3"></div>
+                <div class="tree-container">
+                    <div class="tree">
+                        <div class="trunk"></div>
+                        <div class="leaves leaves1"></div>
+                        <div class="leaves leaves2"></div>
+                        <div class="leaves leaves3"></div>
+                    </div>
+                </div>
             </div>
-            <div class="info">
+
+            <!-- Second Section: AQI Info -->
+            <div class="info-section">
                 <div id="aqiCategory"></div> <!-- Display AQI Category Text -->
                 <div id="dominantPollutant"></div> <!-- Display Dominant Pollutant -->
                 <div id="pollutantSource"></div> <!-- Display Source of Pollutant -->
             </div>
+
+            <!-- Third Section: Health Recommendation and Dropdown -->
+            <div class="info-section">
+                <label for="categorySelect">Choose a category for health recommendation:</label>
+                <select id="categorySelect">
+                    <option value="generalPopulation">General Population</option>
+                    <option value="athletes">Athletes</option>
+                    <option value="children">Children</option>
+                    <option value="elderly">Elderly</option>
+                    <option value="heartDiseasePopulation">Heart Disease Population</option>
+                    <option value="lungDiseasePopulation">Lung Disease Population</option>
+                    <option value="pregnantWomen">Pregnant Women</option>
+                </select>
+
+                <div id="healthRecommendation" class="recommendationBox">
+                    <!-- Health recommendation will be displayed here -->
+                </div>
+            </div>
         </div>
 
-        <!-- Health Recommendation Dropdown -->
-        <label for="categorySelect">Choose a category for health recommendation:</label>
-        <select id="categorySelect">
-            <option value="generalPopulation">General Population</option>
-            <option value="athletes">Athletes</option>
-            <option value="children">Children</option>
-            <option value="elderly">Elderly</option>
-            <option value="heartDiseasePopulation">Heart Disease Population</option>
-            <option value="lungDiseasePopulation">Lung Disease Population</option>
-            <option value="pregnantWomen">Pregnant Women</option>
-        </select>
-
-        <!-- Display the health recommendation -->
-        <div id="healthRecommendation" class="recommendationBox">
-            <!-- Default recommendation will be displayed here -->
-        </div>
+        <footer>
+            Developed by Mahri Yalkapova, Aurie Hyunh, and Rukia Adan
+        </footer>
     </div>
-
-    <button id="returnButton" onclick="goBack()">Return</button> <!-- Return button -->
-
-    <footer>
-        Developed by Mahri Yalkapova, Aurie Hyunh, and Rukia Adan
-    </footer>
 </body>
 </html>

@@ -4,47 +4,72 @@ body {
     margin: 0;
     padding: 0;
     background-color: #caecc1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main container styling */
+.container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: stretch;
-    height: 100vh;
-    text-align: center;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 h1 {
+    text-align: center;
     color: #69A88E;
     font-size: 40px;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
-    text-align: left;
-    padding-left: 20px;
-    margin-top: 10px;
-}
-
-footer {
-    background-color: #533c2a;
+    margin: 0;
     padding: 10px;
-    text-align: right;
-    color: #ffffff;
-    width: 100%;
-    padding-right: 20px;
-    position: fixed;
-    bottom: 0;
+    margin-left: 50px;
 }
 
-/* Center container for all content */
+#returnButton {
+    background-color: #69A88E;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#returnButton:hover {
+    background-color: #466d5d;
+}
+
+/* Horizontal flexbox for the three sections */
 #infoContainer {
+    display: flex;
+    justify-content: center; /* Space sections equally */
+    align-items: flex-start;
+    text-align: center;
+    margin: 20px;
+    max-width: 1200px;
+}
+
+/* Style for each section in the flexbox */
+.info-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 5px;
+    margin: 5px;
 }
 
+/* Styling for date and location */
 #locationName, #currentDate {
     font-size: 24px;
     font-weight: bold;
@@ -53,14 +78,15 @@ footer {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
+    margin: 10px;
 }
 
+/* Tree styling */
 .tree-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 0;
+    margin: 20px;
 }
 
 .tree {
@@ -107,46 +133,28 @@ footer {
 }
 
 /* Info styling */
-.info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    text-align: left;
+#aqiCategory, #dominantPollutant, #pollutantSource {
+    font-size: 23px;
+    font-weight: bold;
+    color: #69A88E;
+    margin: 10px;
 }
 
-#aqiCategory, #dominantPollutant, #pollutantSource {
+label {
     font-size: 24px;
     font-weight: bold;
     color: #69A88E;
-    margin: 10px 0;
-}
-
-/* Styling for health recommendation dropdown and box aligned to the right */
-label {
-    position: fixed;
-    right: 20px;
-    top: 20%;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-select {
-    position: fixed;
-    right: 20px;
-    top: 25%;
-    padding: 10px;
-    font-size: 16px;
     margin: 10px;
-    border-radius: 5px;
 }
 
-/* Recommendation box aligned to the right */
+/* Health recommendation dropdown and box */
+label, select, .recommendationBox {
+    font-size: 20px;
+    color: #69A88E;
+    margin: 10px;
+}
+
 .recommendationBox {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 300px;
     padding: 20px;
     background-color: white;
     color: #69A88E;
@@ -156,18 +164,13 @@ select {
     text-align: left;
 }
 
-#returnButton {
+/* Footer styling */
+footer {
+    background-color: #533c2a;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
     position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background-color: #69A88E;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#returnButton:hover {
-    background-color: #466d5d;
+    bottom: 0;
 }
